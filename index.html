@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>nothing</title>
+  <meta name="description" content="Caught yourself scrolling? Give your mind a minute of nothing. A quiet breathing space, no sign-in.">
+  <meta name="theme-color" content="#161b22" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f1ec" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%239bb5a4' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main id="app">
+
+    <!-- HOME -->
+    <section class="view view-home" data-view="home" aria-labelledby="home-title">
+      <div class="home-inner">
+        <h1 id="home-title" class="wordmark">nothing</h1>
+        <div class="dial-row">
+          <button class="chosen" id="chosen" aria-label="Begin">
+            <span class="n" id="chosen-n">1</span>
+          </button>
+          <!-- A roller-like scale: scroll it up and down to choose a length.
+               The unit label stays fixed at the centre line while the scale moves. -->
+          <div class="ruler-wrap">
+            <div class="ruler" id="ruler" tabindex="0" role="slider"
+                 aria-label="Session length. Scroll to change, press Enter to begin."
+                 aria-valuemin="0" aria-valuemax="60"></div>
+            <span class="ruler-unit" id="ruler-unit" aria-hidden="true">min</span>
+          </div>
+        </div>
+        <p class="hint" id="hint">scroll the scale · tap to begin</p>
+      </div>
+
+      <nav class="corner-links">
+        <a href="#why">why</a>
+        <a href="#progress">progress</a>
+        <a href="#settings">breath</a>
+      </nav>
+    </section>
+
+    <!-- WHY -->
+    <section class="view view-why" data-view="why" aria-labelledby="why-title">
+      <div class="narrow prose">
+        <header class="bar">
+          <a class="quiet" href="#home">← back</a>
+          <h2 id="why-title">why nothing</h2>
+          <span></span>
+        </header>
+
+        <p class="lead">You reach for your phone because you don't know what else to do with a quiet moment.</p>
+
+        <h3>blocking doesn't work</h3>
+        <p>App blockers take the scroll away but leave an empty space. The restless mind looks for the next thing: another app, another feed, another tab. The habit just moves somewhere else.</p>
+
+        <h3>give the mind something that doesn't stimulate it</h3>
+        <p>What's missing isn't a wall. It's something to do that doesn't feed the loop: no new information, no reward, no next video. Just breath, a slow circle and a soft tone.</p>
+
+        <h3>learn to sit blankly</h3>
+        <p>Being able to sit with nothing is a skill, and like any skill it gets easier with practice. At first even a minute feels long. Over time the restlessness quiets down, and you'll notice it the next time you reach for your phone.</p>
+
+        <h3>how it works</h3>
+        <ol>
+          <li>When you notice yourself scrolling, open <em>nothing</em>.</li>
+          <li>Pick ∞ or a length, then tap to begin.</li>
+          <li>Drop your shoulders. Rest your attention between your eyebrows. Follow the circle: in, hold, out.</li>
+          <li>Afterwards, note what came up if you like. Watch your sits grow longer.</li>
+        </ol>
+
+        <h3>private by design</h3>
+        <p>No account, no tracking. Everything stays in this browser.</p>
+
+        <p class="center"><a class="soft-btn" href="#home">begin</a></p>
+      </div>
+    </section>
+
+    <!-- SETTLE IN -->
+    <section class="view view-settle" data-view="settle" aria-live="polite">
+      <p class="settle-line" id="settle-line"></p>
+      <button class="link-btn skip" id="settle-skip">skip</button>
+    </section>
+
+    <!-- SESSION -->
+    <section class="view view-session" data-view="session">
+      <div class="stage">
+        <svg class="ring" viewBox="0 0 100 100" aria-hidden="true">
+          <circle class="ring-track" cx="50" cy="50" r="48"/>
+          <circle class="ring-fill" id="ring-fill" cx="50" cy="50" r="48" pathLength="1"/>
+        </svg>
+        <div class="orb" id="orb"></div>
+        <p class="phase" id="phase" aria-live="polite"></p>
+      </div>
+      <button class="link-btn end" id="end">end</button>
+    </section>
+
+    <!-- REFLECT -->
+    <section class="view view-reflect" data-view="reflect" aria-labelledby="reflect-title">
+      <div class="narrow">
+        <h2 id="reflect-title">What was moving through your mind?</h2>
+        <p class="sub">Thoughts, sounds, feelings. Or nothing at all.</p>
+        <textarea id="reflection" rows="5" maxlength="2000" placeholder="write freely, or skip"></textarea>
+        <div class="row">
+          <button class="link-btn" id="reflect-skip">skip</button>
+          <button class="soft-btn" id="reflect-save">save</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="view view-summary" data-view="summary" aria-labelledby="summary-title">
+      <div class="narrow">
+        <h2 id="summary-title">You did nothing.</h2>
+        <p class="sub" id="summary-sub"></p>
+        <dl class="stats" id="summary-stats"></dl>
+        <p class="insight" id="summary-insight"></p>
+        <div class="row center">
+          <button class="soft-btn" id="summary-home">back to nothing</button>
+        </div>
+        <p class="center"><a class="quiet" href="#progress">see your journal</a></p>
+      </div>
+    </section>
+
+    <!-- PROGRESS -->
+    <section class="view view-progress" data-view="progress" aria-labelledby="progress-title">
+      <div class="narrow">
+        <header class="bar">
+          <a class="quiet" href="#home">← back</a>
+          <h2 id="progress-title">progress</h2>
+          <span></span>
+        </header>
+        <dl class="stats" id="progress-stats"></dl>
+        <div class="block">
+          <h3>journal</h3>
+          <ul class="journal" id="journal"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="view view-settings" data-view="settings" aria-labelledby="settings-title">
+      <div class="narrow">
+        <header class="bar">
+          <a class="quiet" href="#home">← back</a>
+          <h2 id="settings-title">breath</h2>
+          <span></span>
+        </header>
+
+        <div class="presets" id="presets" role="radiogroup" aria-label="Breath pattern">
+          <button class="chip" role="radio" data-preset="sleep">sleep</button>
+          <button class="chip" role="radio" data-preset="custom">custom</button>
+        </div>
+
+        <div class="settings-grid">
+          <div class="sliders">
+            <label class="slider"><span>breathe in</span><input type="range" data-key="inhale" min="2" max="10" step="0.5"><output></output></label>
+            <label class="slider"><span>hold</span><input type="range" data-key="holdIn" min="0" max="10" step="0.5"><output></output></label>
+            <label class="slider"><span>breathe out</span><input type="range" data-key="exhale" min="2" max="12" step="0.5"><output></output></label>
+            <label class="slider"><span>hold</span><input type="range" data-key="holdOut" min="0" max="10" step="0.5"><output></output></label>
+          </div>
+          <div class="preview">
+            <div class="orb small" id="preview-orb" aria-hidden="true"></div>
+            <p class="phase small" id="preview-phase" aria-live="polite"></p>
+            <button class="soft-btn try" id="try">try now</button>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3>guide me with</h3>
+          <div class="segmented" id="guide" role="radiogroup" aria-label="Breath guidance">
+            <button role="radio" data-guide="tones">tones</button>
+            <button role="radio" data-guide="vibration">vibration</button>
+          </div>
+          <p class="note" id="guide-note"></p>
+          <div class="tone-settings" id="tone-settings">
+            <label class="slider"><span>pitch</span><input type="range" id="pitch" min="-6" max="6" step="1"><output id="pitch-out"></output></label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
