@@ -153,6 +153,7 @@ h3 { font-weight: 400; font-size: .75rem; text-transform: lowercase; letter-spac
   position: relative;
   width: 120px;
   height: calc(var(--mark) * 19);
+  overflow-x: hidden; /* vertical only: tilted ticks must never make it pan sideways */
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   overscroll-behavior: contain;
