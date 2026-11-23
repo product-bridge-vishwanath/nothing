@@ -37,18 +37,6 @@ export function startSession({ settings, plannedSec, onFrame, onPhase, onEnd }) 
   let cycles = 0;
   let raf = 0;
   let done = false;
-  let wakeLock = null;
-
-  const requestWake = async () => {
-    try {
-      if ('wakeLock' in navigator && document.visibilityState === 'visible') {
-        wakeLock = await navigator.wakeLock.request('screen');
-      }
-    } catch (_) { /* not critical */ }
-  };
-  const onVis = () => { if (!done && document.visibilityState === 'visible') requestWake(); };
-  document.addEventListener('visibilitychange', onVis);
-  requestWake();
 
   cue(phases[0].name, phases[0].dur / 1000);
   onPhase && onPhase(phases[0].name);
@@ -98,8 +86,6 @@ export function startSession({ settings, plannedSec, onFrame, onPhase, onEnd }) 
     if (done) return;
     done = true;
     cancelAnimationFrame(raf);
-    document.removeEventListener('visibilitychange', onVis);
-    try { wakeLock && wakeLock.release(); } catch (_) { /* ignore */ }
     if (completed) bell();
     else stop();
     onEnd && onEnd({

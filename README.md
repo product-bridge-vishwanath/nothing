@@ -38,7 +38,9 @@ There's no build step and nothing to maintain.
 index.html        all views
 css/styles.css    dusk palette, light/dark, reduced motion
 js/app.js         views and wiring
-js/session.js     breath engine (drift-free, wake lock)
+js/session.js     breath engine (drift-free)
+js/wake.js        keeps the screen awake during a sit
+assets/keep-awake.mp4  tiny muted video, wake fallback for older iPhones
 js/audio.js       tones
 js/haptics.js     vibration + picker ticks
 js/store.js       local storage

@@ -1,6 +1,7 @@
 import * as store from './store.js';
 import * as audio from './audio.js';
 import * as haptics from './haptics.js';
+import * as wake from './wake.js';
 import { startSession, buildPhases, phaseLabel } from './session.js';
 import { computeStats, insight, fmtDur } from './stats.js';
 
@@ -21,6 +22,8 @@ function show(name) {
   if (name === 'progress') renderProgress();
   if (name === 'settings') renderSettings();
   if (name !== 'settings') stopTry();
+  // The screen stays awake from the tap on begin until the sit is over.
+  if (name !== 'settle' && name !== 'session') wake.release();
   window.scrollTo(0, 0);
 }
 
@@ -128,6 +131,7 @@ function renderHome() {
 function startFromHome() {
   settings = store.updateSettings({ lastDuration: DURATIONS[rulerIdx] || null });
   audio.unlock(); // must happen inside a user gesture
+  wake.acquire(); // also inside the tap, so the fallback video may play
   settleIn();
 }
 
