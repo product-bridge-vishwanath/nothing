@@ -21,6 +21,23 @@ export function fmtDur(sec) {
   return `${h}h ${m % 60}m`;
 }
 
+// Total time, in the largest unit that reads naturally: minutes → hours → days → weeks → months → years.
+export function fmtTotal(sec) {
+  sec = Math.max(0, Math.round(sec));
+  if (sec < 60) return `${sec} ${sec === 1 ? 'second' : 'seconds'}`;
+  const units = [
+    ['year', 365 * 86400],
+    ['month', 30 * 86400],
+    ['week', 7 * 86400],
+    ['day', 86400],
+    ['hour', 3600],
+    ['minute', 60],
+  ];
+  const [name, size] = units.find(([, size]) => sec >= size);
+  const n = name === 'minute' ? Math.floor(sec / size) : Math.floor((sec / size) * 10) / 10;
+  return `${n} ${n === 1 ? name : name + 's'}`;
+}
+
 const avg = (a) => (a.length ? a.reduce((x, y) => x + y, 0) / a.length : 0);
 
 export function computeStats(sessions, today = new Date()) {

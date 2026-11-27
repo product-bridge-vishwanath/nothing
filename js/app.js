@@ -3,7 +3,7 @@ import * as audio from './audio.js';
 import * as haptics from './haptics.js';
 import * as wake from './wake.js';
 import { startSession, buildPhases, phaseLabel } from './session.js';
-import { computeStats, insight, fmtDur } from './stats.js';
+import { computeStats, insight, fmtDur, fmtTotal } from './stats.js';
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -282,8 +282,8 @@ function renderProgress() {
   const sessions = store.getSessions();
   const st = computeStats(sessions);
   $('#progress-stats').innerHTML = statsHTML([
-    ['longest sit', st.longestSit ? fmtDur(st.longestSit) : '–'],
-    ['longest ∞', st.longestTimeless ? fmtDur(st.longestTimeless) : '–'],
+    ['longest session', st.longestSit ? fmtDur(st.longestSit) : '–'],
+    ['total nothing', st.totalSec ? fmtTotal(st.totalSec) : '–'],
   ]);
 
   const notes = sessions.filter((s) => s.reflection).slice(-50).reverse();
